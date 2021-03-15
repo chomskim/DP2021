@@ -1,5 +1,10 @@
 package headfirst.designpatterns.strategy;
 
+/**
+ * 
+ * @author cskim
+ *
+ */
 public abstract class Duck {
 	FlyBehavior flyBehavior;
 	QuackBehavior quackBehavior;
