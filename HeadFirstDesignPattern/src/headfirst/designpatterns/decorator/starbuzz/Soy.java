@@ -1,17 +1,16 @@
 package headfirst.designpatterns.decorator.starbuzz;
 
 public class Soy extends CondimentDecorator {
-	Beverage beverage;
 
 	public Soy(Beverage beverage) {
-		this.beverage = beverage;
+		super(beverage);
 	}
 
 	public String getDescription() {
-		return beverage.getDescription() + ", Soy";
+		return super.getDescription() + ", Soy";
 	}
 
 	public double cost() {
-		return .15 + beverage.cost();
+		return .15 + super.cost();
 	}
 }
