@@ -26,6 +26,7 @@ public class OneButtonMain extends Application {
 		bigButton = new Button("Push Me!!");
 		bigButton.setMaxHeight(1600);
 		bigButton.setMaxWidth(2400);
+		
 		//MyEventHandler handler = new MyEventHandler(); // Strategy Pattern
 		//bigButton.setOnAction(handler);
 		/*
@@ -36,8 +37,8 @@ public class OneButtonMain extends Application {
 			}
 		});
 		//*/
-		bigButton.setOnAction(e->bigButton.setText("3.You Pushed Me."));
-		//bigButton.setOnAction(e->handleBigButton(e));// Java 8 Lambda Expression 
+		//bigButton.setOnAction(e->bigButton.setText("3.You Pushed Me."));
+		bigButton.setOnAction(e->handleBigButton(e));// Java 8 Lambda Expression 
 		
 		root.setCenter(bigButton);
 		Scene scene = new Scene(root);
