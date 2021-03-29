@@ -26,6 +26,10 @@ public class DigitalClockController {
 	    animation.setCycleCount(Timeline.INDEFINITE);
 	    animation.play(); // Start animation
     }
+    @FXML
+    void initialize() {
+    	setTimeDisplay();
+    }
     
 	void setTimeDisplay(){
 		
