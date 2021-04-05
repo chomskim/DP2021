@@ -1,0 +1,7 @@
+Report # 1 Due Date 4월 15일(목)
+GrimPan0FXML 수정 -- Observer Pattern 사용 
+Status Bar에 Status 정보 Display
+1) drawPane Size(WidthxHeight)
+2) Edit State -- Line, Pencil, (Move, Delete 나중에 추가 )
+3) Shape 갯수
+JavaFX의 Property와 ObservableList를 사용

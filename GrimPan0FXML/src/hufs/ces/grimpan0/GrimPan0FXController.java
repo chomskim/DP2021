@@ -1,14 +1,20 @@
 package hufs.ces.grimpan0;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javafx.application.Platform;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ObservableDoubleValue;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.ClosePath;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -32,6 +39,9 @@ public class GrimPan0FXController extends AnchorPane {
 	private GrimPanModel model;
 	private ShapeFactory sf;
 
+	DoubleProperty widthProp = new SimpleDoubleProperty();
+	DoubleProperty heightProp = new SimpleDoubleProperty();
+	
 	ColorPicker fcolorPicker = new ColorPicker(Color.WHITE);
 	ColorPicker scolorPicker = new ColorPicker(Color.BLACK);
 	
@@ -67,7 +77,28 @@ public class GrimPan0FXController extends AnchorPane {
 		scolorLabel.setContentDisplay(ContentDisplay.RIGHT);
 		scolorLabel.setStyle("-fx-padding: 0 0 0 15;");
 		menuStrokeColor.setGraphic(scolorLabel);
-	
+
+		widthProp.bind(drawPane.widthProperty());
+		widthProp.addListener((obs, oldVal, newVal) -> {
+			double val = ((ObservableDoubleValue)obs).get();
+			System.out.format("drawPane w=%s newVal=%s \n", val, newVal);
+		});
+		heightProp.bind(drawPane.heightProperty());
+		heightProp.addListener((obs, oldVal, newVal) -> {
+			double val = ((ObservableDoubleValue)obs).get();
+			System.out.format("drawPane h=%s newVal=%s \n", val, newVal);
+		});
+		model.shapeList.addListener((ListChangeListener<Shape>) c-> {
+	        while (c.next()) {
+	            if (c.wasAdded()) {
+	            	System.out.println("Shape Count ="+model.shapeList.size());
+	            }
+	            if (c.wasRemoved()) {
+	            	System.out.println("Shape Count ="+model.shapeList.size());
+	            }
+	        }
+		});
+		
 		initDrawPane();
 	}
 	
@@ -141,12 +172,20 @@ public class GrimPan0FXController extends AnchorPane {
     
     @FXML
     void handleMenuCheckFill(ActionEvent event) {
-
+		CheckMenuItem checkFill = (CheckMenuItem)event.getSource();
+		if (checkFill.isSelected())
+			model.setShapeFill(true);
+		else
+			model.setShapeFill(false);
     }
 
     @FXML
     void handleMenuCheckStroke(ActionEvent event) {
-
+		CheckMenuItem checkStroke = (CheckMenuItem)event.getSource();
+		if (checkStroke.isSelected())
+			model.setShapeStroke(true);
+		else
+			model.setShapeStroke(false);
     }
     
     @FXML
@@ -171,7 +210,15 @@ public class GrimPan0FXController extends AnchorPane {
 
     @FXML
     void handleMenuStrokeWidth(ActionEvent event) {
-
+		TextInputDialog dialog = new TextInputDialog("10");
+		dialog.initOwner(parentStage);
+		dialog.setTitle("Set Stroke Width");
+		dialog.setHeaderText("Enter Stroke Width Value");
+		Optional<String> result = dialog.showAndWait();
+		if (result.isPresent()) {
+			String inputVal = result.get();
+			model.setShapeStrokeWidth(Float.parseFloat(inputVal));
+		}
     }
 
     @FXML
@@ -240,6 +287,7 @@ public class GrimPan0FXController extends AnchorPane {
 				break;
 			case Utils.SHAPE_PENCIL:
 				((Path)model.curDrawShape).getElements().add(new LineTo(p1.getX(), p1.getY()));
+				//((Path)model.curDrawShape).getElements().add(new ClosePath());
 				if (model.curDrawShape != null){
 					model.shapeList.add(model.curDrawShape);
 					model.curDrawShape = null;
@@ -251,6 +299,15 @@ public class GrimPan0FXController extends AnchorPane {
 			}
 		}
     }
-
+    @FXML
+    void handleMenuPencil(ActionEvent event) {
+		model.setEditState(Utils.SHAPE_PENCIL);
+		redrawDrawPane();
+    }
+    @FXML
+    void handleMenuLine(ActionEvent event) {
+		model.setEditState(Utils.SHAPE_LINE);
+		redrawDrawPane();
+    }    
 
 }

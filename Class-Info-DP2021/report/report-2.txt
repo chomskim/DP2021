@@ -1,0 +1,5 @@
+Report #2 Due Date 5월 3일(일)
+Command Pattern 이용한 그림판 만들기
+GrimPanZCmdFXML 참고
+1) 앞의 프로젝트 -- Observer Pattern 사용에 추가
+2) Delete 기능

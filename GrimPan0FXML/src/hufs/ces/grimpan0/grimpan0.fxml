@@ -26,12 +26,12 @@
 				</Menu>
 				<Menu mnemonicParsing="false" text="Shape">
 					<items>
-						<RadioMenuItem mnemonicParsing="false" text="Line">
+						<RadioMenuItem mnemonicParsing="false" onAction="#handleMenuLine" text="Line">
 							<toggleGroup>
 								<ToggleGroup fx:id="toggleGroup1" />
 							</toggleGroup>
 						</RadioMenuItem>
-						<RadioMenuItem mnemonicParsing="false" selected="true" text="Pencil" toggleGroup="$toggleGroup1" />
+						<RadioMenuItem mnemonicParsing="false" onAction="#handleMenuPencil" selected="true" text="Pencil" toggleGroup="$toggleGroup1" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Edit">

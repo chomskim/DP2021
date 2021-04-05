@@ -24,7 +24,7 @@ public class GrimPanModel {
 	private Point2D currMousePosition = null;
 	private Point2D prevMousePosition = null;
 	
-	public ArrayList<Shape> shapeList = null;
+	public ObservableList<Shape> shapeList = null;
 	public Shape curDrawShape = null;
 	
 	public static GrimPanModel getInstance() {
@@ -38,7 +38,7 @@ public class GrimPanModel {
 		return uniqueModelInstance;
 	}
 	private GrimPanModel(){
-		this.shapeList = new ArrayList<Shape>();
+		this.shapeList = FXCollections.observableArrayList();
 		this.shapeStrokeColor = Color.BLACK;
 		this.shapeFillColor = Color.TRANSPARENT;
 	}

@@ -1,0 +1,10 @@
+Report # 5 Due Date 6월14일(일)
+TFIDF-Project 수정
+
+1. 현재의 TFIDF-Project(BookTFIDFMain 포함 관련 프로그램)에서 stream과 lambda를 사용 할 수 있는 부분을
+      찾아 수정한다.
+      보충 설명
+   resources/com에 있는 file을 읽어 wfList 만드는 과정을 stream과 lambda 사용
+   parellel stream을 사용해 볼 것(parallelStream(), parallel() method 사용)
+2. 수정 후 처음 Program과 시간 비교
+3. 출력을 보기 좋게 한다.

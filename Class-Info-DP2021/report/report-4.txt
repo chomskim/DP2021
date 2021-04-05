@@ -1,0 +1,18 @@
+Report # 4 Due Date 5월 31일(일)
+CircularBufferSimulationFX 수정
+
+요구사항
+1. Circular Buffer를 3개 만들어 디스플레이
+2. Producer 1개, Consumer 3개
+3. Producer와 Consumer는 random하게 Circular Buffer 선택
+4. buf1, buf3, buf3가 있을 때
+prod1은 짧은 queue에 insert
+              / buf1-->cons1 \
+    prod1  -->                -->buf3-->cons3
+              \ buf2-->cons2 /     
+    
+    prod1은 1초에 4개 produce -- Thread.sleep((int)(Math.random() * 250));
+    cons1, cons2는 1초에 2개 consume -- Thread.sleep((int)(Math.random() * 500));
+    cons3는 1초에 4개 consume -- Thread.sleep((int)(Math.random() * 250));
+    각 buf size는 10~20 사이로 정할 것
+5. HBOX인 아래부분에 2줄로 생성 카운트+fibo 값 display(prod때, consume 때)
