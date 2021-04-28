@@ -32,6 +32,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -44,7 +45,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -289,16 +289,19 @@ public class GrimPanFXController extends AnchorPane {
     @FXML
 	void handleMenuRegular(ActionEvent event) {
 		model.setEditState(model.STATE_REGULAR);
-		Object[] possibleValues = { 
+		String[] possibleValues = { 
 				"3", "4", "5", "6", "7",
 				"8", "9", "10", "11", "12"
-		};
-		Object selectedValue = JOptionPane.showInputDialog(null,
-				"Choose one", "Input",
-				JOptionPane.INFORMATION_MESSAGE, null,
-				possibleValues, possibleValues[0]);
-		model.setNPolygon(Integer.parseInt((String)selectedValue));
-
+		};		
+		ChoiceDialog<String> dialog = new ChoiceDialog<String>("3", possibleValues);
+		dialog.initOwner(parentStage);
+		dialog.setTitle("Select Number for Regular Polygon");
+		dialog.setHeaderText("N Regular Polygon");
+		Optional<String> result = dialog.showAndWait();
+		if (result.isPresent()) {
+			String inputVal = result.get();
+			model.setNPolygon(Integer.parseInt(inputVal));
+		}
 		drawPane.redraw();
 	}
 
