@@ -282,13 +282,13 @@ public class GrimPanFXController extends AnchorPane {
 
     @FXML
 	void handleMenuOval(ActionEvent event) {
-		model.setEditState(model.STATE_OVAL);
+    	changeEditState(model.STATE_OVAL);
 		drawPane.redraw();
 	}
     
     @FXML
 	void handleMenuRegular(ActionEvent event) {
-		model.setEditState(model.STATE_REGULAR);
+    	changeEditState(model.STATE_REGULAR);
 		String[] possibleValues = { 
 				"3", "4", "5", "6", "7",
 				"8", "9", "10", "11", "12"
@@ -307,7 +307,7 @@ public class GrimPanFXController extends AnchorPane {
 
     @FXML
 	void handleMenuPolygon(ActionEvent event) {
-		model.setEditState(model.STATE_POLYGON);
+    	changeEditState(model.STATE_POLYGON);
 		drawPane.redraw();
 	}    
 
