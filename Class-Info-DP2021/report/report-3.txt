@@ -1,7 +1,8 @@
-Report # 3 Due Date 5월 18일(월)
+Report # 3 Due Date 5월 10일(월)
 그림판 완성
-GrimPanZStateFXML 수정
+GrimPanStateFXML 수정
 이전 과제에서 완성한 Command Pattern에 State Pattern을 추가하여  완성
 1) State Pattern으로 구현
 2) Delete State 추가
- 
+3) 멋 있는 그림을 만들어 svg로 save. <학번>.svg 함께 제출. 
+   그림이 좋으면 추가 점수. 
