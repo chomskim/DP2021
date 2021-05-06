@@ -3,26 +3,26 @@ import java.net.*;
 
 import java.io.*;
 
-public class TCPMessangerClient {
+public class TCPEchoClient {
 
 	final static int DEFAULT_PORT = 7070;
-	//final static String DEFAULT_HOST = "192.168.219.154";
 	//final static String DEFAULT_HOST = "220.67.121.119";
 	final static String DEFAULT_HOST = "localhost";
 
 	public volatile boolean stopClient = false;
 
-	public TCPMessangerClient() {
+	public TCPEchoClient() {
 		
 		String hostname = DEFAULT_HOST;
 
 		BufferedReader userIn = null;
 		PrintWriter out = null;
+		Socket theSocket = null;
 		try {
-			Socket theSocket = new Socket(hostname, DEFAULT_PORT);
+			theSocket = new Socket(hostname, DEFAULT_PORT);
 			userIn = new BufferedReader(new InputStreamReader(System.in));
 			out = new PrintWriter(theSocket.getOutputStream());
-			System.out.println("Connected to Messanger server");
+			System.out.println("Connected to Echo server");
 
 			ReceiverThread receiver = new ReceiverThread(theSocket);
 			receiver.start();
@@ -34,8 +34,8 @@ public class TCPMessangerClient {
 				}
 				
 				String theLine = userIn.readLine();
-				if (theLine.equals(".")) {
-					out.println("END");
+				if (theLine.startsWith(".")) {
+					out.println("<<END Echo Client>>");
 					out.flush();
 					receiver.halt();
 					break;
@@ -50,6 +50,7 @@ public class TCPMessangerClient {
 		}
 		finally {
 			try {
+				if (theSocket != null) theSocket.close();
 				if (userIn != null) userIn.close(); 
 				if (out != null) out.close(); 
 			}
@@ -60,7 +61,7 @@ public class TCPMessangerClient {
 
 	public static void main(String[] args) {
 
-		TCPMessangerClient tmc = new TCPMessangerClient();
+		TCPEchoClient tmc = new TCPEchoClient();
 		
 	}  // end main
 	class ReceiverThread extends Thread {
@@ -87,7 +88,7 @@ public class TCPMessangerClient {
 
 					try {
 						String outMsg = networkIn.readLine();
-						if (outMsg==null || outMsg.equals("END")) {
+						if (outMsg==null) {
 							stopClient = true;
 							break;
 						}
@@ -104,7 +105,9 @@ public class TCPMessangerClient {
 				try {
 					if (networkIn != null) networkIn.close(); 
 				}
-				catch (IOException e) {}
+				catch (IOException e) {
+					System.err.println(e);
+				}
 			}
 
 		}
