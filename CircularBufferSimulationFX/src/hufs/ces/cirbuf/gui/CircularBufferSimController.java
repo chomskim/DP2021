@@ -52,14 +52,14 @@ public class CircularBufferSimController extends AnchorPane {
     	if (cirbuf==null) {
     		initCircularBuffer(DEFAULT_BUFFER_COUNT);
     	}
-		Thread prod = new Thread(new ProducerTask());
+		Thread prod1 = new Thread(new ProducerTask("prod1"));
 		Thread cons = new Thread(new ConsumerTask());
-		prod.start();
+		prod1.start();
 		cons.start();
-		Thread prod2 = new Thread(new ProducerTask());
-		Thread cons2 = new Thread(new ConsumerTask());
+		Thread prod2 = new Thread(new ProducerTask("prod2"));
+		//Thread cons2 = new Thread(new ConsumerTask());
 		prod2.start();
-		cons2.start();
+		//cons2.start();
     }
 
     @FXML
@@ -141,11 +141,19 @@ public class CircularBufferSimController extends AnchorPane {
 		
 	}
 	private class ProducerTask implements Runnable {
+		String prodId = "prod";
+		
+		public ProducerTask(String prodId) {
+			this.prodId = prodId;
+		}
+		
 		public void run() {
+			int count = 0;
 			try {
 				while (true) {
 					//System.out.println("Producer writes " + i);
-					cirbuf.write(String.valueOf(fibGen.next())); // Add a value to the buffer
+					count++;
+					cirbuf.write(prodId+" "+count+": "+String.valueOf(fibGen.next())); // Add a value to the buffer
 					Platform.runLater(()->{
 						setBufferShapeColor();
 						lblCount.setText(String.valueOf(cirbuf.getOccupiedBufferCount()));
