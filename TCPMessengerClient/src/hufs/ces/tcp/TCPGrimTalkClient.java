@@ -70,9 +70,9 @@ import hufs.ces.tcp.TCPVisualMessangerClient.ReceiverThread;
 public class TCPGrimTalkClient extends JFrame {
 
 	final static int DEFAULT_PORT = 7070;
-	final static String DEFAULT_HOST = "192.168.219.154";
+	//final static String DEFAULT_HOST = "192.168.219.154";
 	//final static String DEFAULT_HOST = "220.67.121.119";
-	//final static String DEFAULT_HOST = "localhost";
+	final static String DEFAULT_HOST = "localhost";
 	
 	private static String hostname = DEFAULT_HOST;
 	private static int port = DEFAULT_PORT;

@@ -37,9 +37,9 @@ public class TCPVisualMessangerClient extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	final static int DEFAULT_PORT = 7070;
-	final static String DEFAULT_HOST = "192.168.219.154";
+	//final static String DEFAULT_HOST = "192.168.219.154";
 	//final static String DEFAULT_HOST = "220.67.121.119";
-	//final static String DEFAULT_HOST = "localhost";
+	final static String DEFAULT_HOST = "localhost";
 
 
 	private static String hostname = DEFAULT_HOST;
