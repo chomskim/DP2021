@@ -5,15 +5,17 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class HelloImpl extends UnicastRemoteObject implements Hello {
 
-	static int getCount = 0;
+	int count = 0;
+	static int staticCount = 0;
 	protected HelloImpl() throws RemoteException {
 		super();
 	}
 
 	@Override
 	public String getGreeting() throws RemoteException {
-		getCount++;
-		return ("Hello there!"+" count="+getCount);
+		staticCount++;
+		count++;
+		return ("Hello there!"+" staticCount="+staticCount+" count="+count);
 	}
 
 }
