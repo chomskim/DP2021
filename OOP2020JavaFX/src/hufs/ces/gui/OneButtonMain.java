@@ -26,7 +26,7 @@ public class OneButtonMain extends Application {
 		bigButton = new Button("Push Me!!");
 		bigButton.setMaxHeight(1600);
 		bigButton.setMaxWidth(2400);
-		//MyEventHandler handler = new MyEventHandler();
+		//EventHandler handler = new MyEventHandler();
 		//bigButton.setOnAction(handler);
 		/*
 		bigButton.setOnAction(new EventHandler() { // Anonymous Class
@@ -36,8 +36,8 @@ public class OneButtonMain extends Application {
 			}
 		});
 		//*/
-		bigButton.setOnAction(e->bigButton.setText("3.You Pushed Me.")); // Lambda Function
-		//bigButton.setOnAction(e->handleBigButton(e));
+		//bigButton.setOnAction(e->bigButton.setText("3.You Pushed Me.")); // Lambda Function
+		bigButton.setOnAction(e->handleBigButton(e));
 		
 		root.setCenter(bigButton);
 		Scene scene = new Scene(root);
@@ -47,7 +47,7 @@ public class OneButtonMain extends Application {
 
 	}
     void handleBigButton(ActionEvent event) {
-    	bigButton.setText("You Pushed Me.");
+    	bigButton.setText("4.You Pushed Me.");
     }
 
 	public static void main(String[] args) {
