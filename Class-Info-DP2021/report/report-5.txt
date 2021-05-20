@@ -1,10 +1,10 @@
-Report # 5 Due Date 6월14일(일)
-TFIDF-Project 수정
+Report#5
+제목: RMI-GrimTalkFX 수정.
+기한: 2021년 6월7일(월)
 
-1. 현재의 TFIDF-Project(BookTFIDFMain 포함 관련 프로그램)에서 stream과 lambda를 사용 할 수 있는 부분을
-      찾아 수정한다.
-      보충 설명
-   resources/com에 있는 file을 읽어 wfList 만드는 과정을 stream과 lambda 사용
-   parellel stream을 사용해 볼 것(parallelStream(), parallel() method 사용)
-2. 수정 후 처음 Program과 시간 비교
-3. 출력을 보기 좋게 한다.
+수정
+1) Mobile 앱 형태로 UI를 단순화(손가락 터치로 작동 한다고 가정)
+2) RMI-Server와 RMI-Client에 있는 다른 프로그램도 참고
+3) 필요기능을 버튼식으로 구현(메뉴인 경우 Drop-Down 방식)
+4) 필요기능 -- 이미 있는 기능(등록, 연결, 보내기) 외에, 색선택, 선두께 선택, Undo, Delete, Move, 전체 지우기
+5) 버튼은 아이콘 이미지 사용
