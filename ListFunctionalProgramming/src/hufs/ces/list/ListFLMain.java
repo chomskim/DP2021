@@ -130,19 +130,19 @@ public class ListFLMain {
 			e.printStackTrace();
 		}
 	}
-	/*
-	static List<Integer> flat;
-	static void testFlat1(Integer[][] intList) {		
+	///*
+	//static List<Integer> flat;
+	static void testFlat1(List<List<Integer>> nestedList) {		
 		try {
-			flat = new ArrayList<>(); intList.forEach(x->{flat.addAll(x);});System.out.println(flat);
-			flat = new ArrayList<>(); for(Integer[] x:intList){flat.addAll(x);};System.out.println(flat);	
-			flat = new ArrayList<>(); map(intList,x->{flat.addAll(x);return null;});System.out.println(flat);
-			//System.out.println(reduce(intList,(li,x)->{li.addAll(x);}));
+			System.out.println(reduce(nestedList,(li, x)->{
+				li.addAll(x); 
+				return (ArrayList<Integer>) li;
+			},new ArrayList<Integer>()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	*/
+	//*/
 	static List<Integer> top3;
 	static void testTop3(List<Integer> intList) {		
 		try {
@@ -178,8 +178,13 @@ public class ListFLMain {
 		testMin1(intList);
 		testSum1(intList);
 		testEven1(intList);
-		//Integer[][] intNestedList = new Integer[][]{{3,2},{7},{6,4}};
-		//testFlat1(intNestedList);
+		List<List<Integer>> nestedList = new ArrayList<>(Arrays.asList(
+				new ArrayList<>(Arrays.asList(3,2)),
+				new ArrayList<>(Arrays.asList(7)),
+				new ArrayList<>(Arrays.asList(6,4))
+				));
+		System.out.println(nestedList);
+		testFlat1(nestedList);
 		intList = new ArrayList<>(Arrays.asList(new Integer[]{3,2,7,6,4}));
 		testTop3(intList);
 		intList = new ArrayList<>(Arrays.asList(2,3,4,5,6)); 
@@ -188,6 +193,7 @@ public class ListFLMain {
 			System.out.println(tail(intList));
 
 			System.out.println(map(intList, (x)->x*x));
+			System.out.println(map(intList, (x)->x%2 == 0));
 			System.out.println(mapForEach(intList, (x)->x*x));
 			System.out.println(mapRecursive(intList, (x)->x*x));
 			System.out.println(mapRecursive1(intList, (x)->x*x));
