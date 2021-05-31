@@ -1,4 +1,4 @@
-package hufs.ces.gpl;
+package hufs.ces.stream;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 
 public class TextFile2Stream {
 
-	static final String delimPattern = "(\\s|\\p{Punct}|’)+";
+	static final String delimPattern = "(\\s|\\p{Punct}|’)+";// regex
 
 	static Set<String> filterSet = null;
 	static {

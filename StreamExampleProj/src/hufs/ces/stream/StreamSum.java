@@ -1,4 +1,4 @@
-package hufs.ces.gpl;
+package hufs.ces.stream;
 
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;

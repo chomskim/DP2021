@@ -1,4 +1,4 @@
-package hufs.ces.gpl;
+package hufs.ces.stream;
 
 public class PredicateFunctions {
 	static public boolean isEven(int t) {
