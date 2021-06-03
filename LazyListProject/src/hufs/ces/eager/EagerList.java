@@ -7,6 +7,8 @@ import java.util.Random;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import hufs.ces.lazy.LazyList;
 import hufs.ces.lisplist.LispList;
@@ -185,7 +187,8 @@ public class EagerList<T> implements LispList<T> {
 		} catch(Exception e) {
 			System.err.println(e);
 		}
-    	
+		// Using stream
+		System.out.println(Stream.of(1,2,3,4,0,6).map(x-> 6 / x).limit(3).collect(Collectors.toList()));
     }
 
 }
