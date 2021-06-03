@@ -18,6 +18,10 @@ public class RMIMessangerServer {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		// External Tools Configurations
+		// C:\pub\Java\jdk1.8.0_xxx\bin\rmiregistry.exe
+		// ${workspace_loc:/RMI-Server/bin}
+
 		//System.setSecurityManager(new RMISecurityManager());
 		try {
 			String rmiObjectName = "rmi://" + HOST + "/RMIMessanger";
